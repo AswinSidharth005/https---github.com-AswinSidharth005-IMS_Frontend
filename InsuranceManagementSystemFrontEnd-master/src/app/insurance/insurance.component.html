@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance, Policies & Retirement Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Custom CSS for flip animation and live icons - Multicolour Theme */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #343a40; /* Darker text for contrast */
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        h1.display-6 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #6f42c1; /* Deep purple for main heading */
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease-out, color 0.3s ease-out;
+        }
+
+        /* Hover animation for the main heading */
+        h1.display-6:hover {
+            transform: translateY(-5px) scale(1.02);
+            color: #fd7e14; /* Vibrant orange on hover */
+        }
+
+        /* Card Styles */
+        .policy-wrapper {
+            perspective: 1000px;
+            height: 180px;
+            width: 260px;
+            margin: 12px;
+            flex: 0 0 auto;
+        }
+
+        .policy.card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            background-color: #ffffff; /* Default background for both sides */
+        }
+
+        .policy.card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px 15px;
+            border-radius: 12px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background-color: #ffffff; /* Clean white front */
+            color: #34495e; /* Darker text for good contrast on white */
+        }
+
+        /* Multicolour card backs */
+        .policy-wrapper:nth-child(1) .card-back { background-color: #a2d2ff; color: #1e3a8a; } /* Light blue */
+        .policy-wrapper:nth-child(2) .card-back { background-color: #ffc2b4; color: #8a3324; } /* Light red/orange */
+        .policy-wrapper:nth-child(3) .card-back { background-color: #b2f2bb; color: #2d6a4f; } /* Light green */
+        .policy-wrapper:nth-child(4) .card-back { background-color: #ffe8a8; color: #8f5c00; } /* Light yellow */
+        .policy-wrapper:nth-child(5) .card-back { background-color: #d1b2ff; color: #5a2e7d; } /* Light purple */
+        .policy-wrapper:nth-child(6) .card-back { background-color: #b3e0ff; color: #1a5c7d; } /* Another light blue */
+        .policy-wrapper:nth-child(7) .card-back { background-color: #ffd8be; color: #8a4a00; } /* Cream/peach */
+        .policy-wrapper:nth-child(8) .card-back { background-color: #a7e9af; color: #2b6c3e; } /* Fresh green */
+
+        .card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Icon Styling */
+        .card-face i {
+            font-size: 3.8rem;
+            color: #007bff; /* Default blue for most icons */
+            margin-bottom: 15px;
+            transition: transform 0.3s ease-out, color 0.3s ease-out;
+        }
+
+        /* Specific icon for 'Life Insurance' - vibrant red */
+        .card-face i.fa-heart-pulse {
+            color: #dc3545; /* A more prominent red for heartbeat */
+        }
+
+        /* Multicolour icons on the front based on their position */
+        .policy-wrapper:nth-child(1) .card-front i { color: #007bff; } /* Blue for Home */
+        .policy-wrapper:nth-child(2) .card-front i { color: #28a745; } /* Green for Bike */
+        .policy-wrapper:nth-child(3) .card-front i { color: #dc3545; } /* Red for Car */
+        .policy-wrapper:nth-child(4) .card-front i { color: #ffc107; } /* Yellow for Gold */
+        .policy-wrapper:nth-child(5) .card-front i { color: #6f42c1; } /* Purple for Life */
+        .policy-wrapper:nth-child(6) .card-front i { color: #17a2b8; } /* Cyan for Medical */
+        .policy-wrapper:nth-child(7) .card-front i { color: #fd7e14; } /* Orange for Travel */
+        .policy-wrapper:nth-child(8) .card-front i { color: #6610f2; } /* Indigo for Pet */
+
+
+        /* Back content styling */
+        .card-back p {
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        /* --- LIVE ICON ANIMATIONS (UNCHANGED) --- */
+
+        /* Home Insurance: Door Open/Welcome */
+        .policy.card:hover .fa-house-chimney {
+            animation: doorOpen 0.8s forwards ease-in-out;
+        }
+        @keyframes doorOpen {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(-20deg) scale(1.1); }
+            100% { transform: rotateY(0deg) scale(1); }
+        }
+
+        /* Bike Insurance: Ride/Zoom */
+        .policy.card:hover .fa-motorcycle {
+            animation: bikeZoom 0.6s infinite alternate ease-in-out;
+        }
+        @keyframes bikeZoom {
+            0% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(5px) rotate(5deg) scale(1.05); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        /* Car Insurance: Drive/Pulse */
+        .policy.card:hover .fa-car {
+            animation: carDrive 0.7s infinite alternate ease-in-out;
+        }
+        @keyframes carDrive {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(2px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(-2px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Gold Insurance: Sparkle/Shine */
+        .policy.card:hover .fa-coins {
+            animation: coinSparkle 0.9s infinite linear;
+        }
+        @keyframes coinSparkle {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(10deg) scale(1.05); opacity: 0.9; }
+            50% { transform: rotate(0deg) scale(1); }
+            75% { transform: rotate(-10deg) scale(1.05); opacity: 0.9; }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        /* Life Insurance: Heartbeat */
+        .policy.card:hover .fa-heart-pulse {
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* Medical Insurance: Care/Cross Pulse */
+        .policy.card:hover .fa-suitcase-medical {
+            animation: crossPulse 1s infinite alternate ease-in-out;
+        }
+        @keyframes crossPulse {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg) scale(1.05); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Travel Insurance: Rolling/Globe Trot */
+        .policy.card:hover .fa-suitcase-rolling {
+            animation: suitcaseRoll 1.2s infinite linear;
+        }
+        @keyframes suitcaseRoll {
+            0% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(3px) rotate(5deg); }
+            50% { transform: translateX(0) rotate(0deg); }
+            75% { transform: translateX(-3px) rotate(-5deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        /* Pet Insurance: Barking/Tail Wag */
+        .policy.card:hover .fa-dog {
+            animation: dogBark 0.5s infinite alternate;
+            transform-origin: bottom center;
+        }
+        @keyframes dogBark {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .policy-wrapper {
+                width: 46%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1.display-6 {
+                font-size: 2.5rem;
+                margin-top: 40px;
+            }
+            .policy-wrapper {
+                width: 85%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1.display-6 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Subtle entrance animation */
+        .slide-up {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: slideIn 0.6s forwards ease-out;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message slide-up">
+        <div class="container d-flex justify-content-center align-items-center">
+            <h1 class="pt-5 mt-5 display-6 fw-bold text-center position-relative">
+                Insurance, Policies and Retirement <br> Solutions
+            </h1>
+        </div>
+        <div class="container mt-4 p-0">
+            <div class="row gx-4 mx-0 mt-3">
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-house-chimney"></i>
+                            <p class="card-text">Home Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Protect your home with comprehensive coverage tailored for service members.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-motorcycle"></i>
+                            <p class="card-text">Bike Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Special rates and benefits for motorcycles, ensuring your rides are covered.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-car"></i>
+                            <p class="card-text">Car Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Reliable auto insurance with discounts for military families.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-coins"></i>
+                            <p class="card-text">Gold Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Secure your precious assets with specialized gold and valuables insurance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row gx-4 mx-0 mt-3">
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <p class="card-text">Life Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Provide financial security for your loved ones with flexible life insurance options.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-suitcase-medical"></i>
+                            <p class="card-text">Medical Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Comprehensive health coverage designed to meet your family's needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-suitcase-rolling"></i>
+                            <p class="card-text">Travel Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Protect your journeys with travel insurance for military deployments and leisure.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="policy-wrapper">
+                    <div class="policy card">
+                        <div class="card-face card-front">
+                            <i class="fa-solid fa-dog"></i>
+                            <p class="card-text">Pet Insurance</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <p>Affordable pet insurance to keep your furry family members healthy and happy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

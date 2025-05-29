@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --body-bg: #f0f2f5;
+            --text-color: #343a40;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-shadow: rgba(0, 0, 0, 0.1);
+            --brand-color: #2c3e50;
+            --nav-link-color: #34495e;
+            --nav-link-hover-color: #007bff;
+            --nav-link-hover-bg: rgba(0, 123, 255, 0.08);
+            --nav-link-underline-color: #007bff;
+            --login-btn-start: #007bff;
+            --login-btn-end: #0056b3;
+            --login-btn-hover-shadow: rgba(0, 123, 255, 0.3);
+            --register-btn-bg: #28a745;
+            --register-btn-hover-bg: #218838;
+            --register-btn-hover-shadow: rgba(40, 167, 69, 0.3);
+            --social-icon-color: #7f8c8d;
+            /* Re-enabling hover for social icons */
+            --social-icon-hover-color: #007bff; 
+            --toggle-button-color: #343a40;
+            --toggle-button-hover-color: #007bff;
+        }
+
+        body.dark-mode {
+            --body-bg: #2c3e50;
+            --text-color: #ecf0f1;
+            --header-bg: rgba(44, 62, 80, 0.95);
+            --header-shadow: rgba(0, 0, 0, 0.3);
+            --brand-color: #ecf0f1;
+            --nav-link-color: #bdc3c7;
+            --nav-link-hover-color: #3498db;
+            --nav-link-hover-bg: rgba(52, 152, 219, 0.15);
+            --nav-link-underline-color: #3498db;
+            --login-btn-start: #3498db;
+            --login-btn-end: #2980b9;
+            --login-btn-hover-shadow: rgba(52, 152, 219, 0.4);
+            --register-btn-bg: #27ae60;
+            --register-btn-hover-bg: #229954;
+            --register-btn-hover-shadow: rgba(39, 174, 96, 0.4);
+            --social-icon-color: #95a5a6;
+            /* Re-enabling hover for social icons */
+            --social-icon-hover-color: #3498db; 
+            --toggle-button-color: #ecf0f1;
+            --toggle-button-hover-color: #3498db;
+        }
+
+        /* Base styles and general adjustments */
+        body {
+            padding-top: 80px; /* Adjust based on the new single header height */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+            background-color: var(--body-bg); /* Use variable */
+            color: var(--text-color); /* Use variable */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+        }
+
+        /* Unified Header Navbar */
+        .main-header-navbar {
+            background-color: var(--header-bg); /* Use variable */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            box-shadow: 0 4px 15px var(--header-shadow); /* Use variable */
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1050; /* Ensure it's on top */
+            transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+        }
+
+        /* Brand/Logo Styling */
+        .main-header-navbar .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--brand-color) !important; /* Use variable */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .main-header-navbar .navbar-brand:hover {
+            transform: scale(1.03); /* Slight zoom on logo hover */
+        }
+
+        .main-header-navbar .navbar-brand img {
+            height: 45px; /* Larger logo */
+            margin-right: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .main-header-navbar .navbar-brand img:hover {
+            transform: rotate(5deg); /* Subtle rotate on logo hover */
+        }
+
+        /* General Navigation Links */
+        .main-header-navbar .navbar-nav .nav-link {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--nav-link-color) !important; /* Use variable */
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 6px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden; /* For underline effect */
+        }
+
+        .main-header-navbar .navbar-nav .nav-link:hover {
+            color: var(--nav-link-hover-color) !important; /* Use variable */
+            background-color: var(--nav-link-hover-bg); /* Use variable */
+        }
+
+        /* Underline effect for main nav links (HOME, INSURANCE, ABOUT US) */
+        .main-header-navbar .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px; /* Thickness of the underline */
+            background-color: var(--nav-link-underline-color); /* Use variable */
+            transition: width 0.3s ease-in-out;
+        }
+
+        .main-header-navbar .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Button-like Nav Links (Login/Register) */
+        .nav-link.btn-header {
+            font-size: 0.95rem; /* Slightly smaller for integrated buttons */
+            font-weight: 600;
+            border-radius: 25px; /* More rounded pill shape */
+            padding: 8px 20px;
+            margin-left: 15px; /* Space from other nav items */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother bounce transition */
+        }
+
+        .nav-link.btn-header i {
+            margin-right: 8px;
+        }
+
+        /* Login Button Style (Primary Action) */
+        .btn-login-header {
+            background-image: linear-gradient(to right, var(--login-btn-start) 0%, var(--login-btn-end) 100%); /* Use variables */
+            color: #fff !important;
+            border: none;
+        }
+
+        .btn-login-header:hover {
+            transform: translateY(-3px); /* Stronger lift */
+            box-shadow: 0 8px 20px var(--login-btn-hover-shadow); /* Use variable */
+            background-image: linear-gradient(to left, var(--login-btn-start) 0%, var(--login-btn-end) 100%); /* Use variables */
+        }
+
+        /* Register Button Style (Secondary Action) */
+        .btn-register-header {
+            background-color: var(--register-btn-bg); /* Use variable */
+            color: #fff !important;
+            border: 1px solid var(--register-btn-bg); /* Use variable */
+        }
+
+        .btn-register-header:hover {
+            background-color: var(--register-btn-hover-bg); /* Use variable */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--register-btn-hover-shadow); /* Use variable */
+        }
+
+        /* Social Icons Styling */
+        .social-icon-header {
+            font-size: 1.3rem; /* Slightly larger icons */
+            color: var(--social-icon-color) !important; /* Use variable */
+            margin: 0 8px;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Re-enabled transition */
+        }
+
+        .social-icon-header:hover {
+            color: var(--social-icon-hover-color) !important; /* Use variable */
+            transform: translateY(-2px); /* Subtle lift on hover */
+        }
+
+        /* Dark/Light Mode Toggle Button */
+        #themeToggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 15px;
+            color: var(--toggle-button-color);
+            transition: color 0.3s ease;
+        }
+
+        #themeToggle:hover {
+            color: var(--toggle-button-hover-color);
+        }
+
+        /* --- Animation Adjustments (if still desired, though primary focus is hover) --- */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staggered animation delays for primary nav items */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(1) .animate-fade-in { animation-delay: 0.1s; } /* Home */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(2) .animate-fade-in { animation-delay: 0.2s; } /* Insurance */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(3) .animate-fade-in { animation-delay: 0.3s; } /* About Us */
+        
+        /* Staggered animation delays for Login/Register buttons */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(4) .animate-fade-in { animation-delay: 0.4s; } /* Login */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(5) .animate-fade-in { animation-delay: 0.5s; } /* Register */
+
+        /* Staggered animation delays for social icons and theme toggle */
+        /* Note: The d-none d-lg-block span is not a nav-item and won't animate, skip it */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(7) .animate-fade-in { animation-delay: 0.6s; } /* Facebook */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(8) .animate-fade-in { animation-delay: 0.7s; } /* Instagram */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(9) .animate-fade-in { animation-delay: 0.8s; } /* Twitter */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(10) .animate-fade-in { animation-delay: 0.9s; } /* LinkedIn */
+        .main-header-navbar .navbar-nav .nav-item:nth-child(11) .animate-fade-in { animation-delay: 1.0s; } /* Theme Toggle */
+
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .main-header-navbar .navbar-nav .nav-link.btn-header {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 100%; /* Full width for buttons in mobile */
+            }
+            .main-header-navbar .navbar-nav .nav-link {
+                text-align: center; /* Center links in mobile dropdown */
+            }
+            .main-header-navbar .navbar-nav .nav-link::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg main-header-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Insurance Logo"> VSA & Co
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarContent"
+                aria-controls="mainNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link animate-fade-in btn-hover animate-button" routerLink="/home" href="#">
+                            HOME
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate-fade-in btn-hover animate-button" routerLink="/insurance" href="#">
+                            INSURANCE
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate-fade-in btn-hover animate-button" routerLink="/about-us" href="#">
+                            ABOUT US
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link btn-header btn-login-header animate-fade-in animate-button" routerLink="/login" href="#">
+                            <i class="fa-solid fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-header btn-register-header animate-fade-in animate-button" routerLink="/register" href="#">
+                            <i class="fa-solid fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block">
+                        <span class="nav-link text-muted" style="padding: 0 10px;">|</span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link social-icon-header animate-fade-in" href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link social-icon-header animate-fade-in" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link social-icon-header animate-fade-in" href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link social-icon-header animate-fade-in" href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="themeToggle" class="animate-fade-in animate-button" aria-label="Toggle dark/light mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <router-outlet/>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Check for saved theme preference in localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                if (savedTheme === 'dark-mode') {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            } else {
+                // Default to light mode if no preference is saved
+                body.classList.remove('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

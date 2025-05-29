@@ -1,0 +1,49 @@
+.policy {
+    width: 200px;
+    height: 150px;
+}
+
+.no-right-padding {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+
+}
+
+.message {
+    background-image: url('/insurance-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 120vh;
+
+}
+
+.hover-effect:hover {
+
+
+    background-color: #01152c;
+    /* Light red background on hover */
+    color: #ffffff;
+    /* Optional: text color change */
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+}

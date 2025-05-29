@@ -1,0 +1,73 @@
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.message {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Initial background image */
+    background-image: url('/home.jpg'); 
+    /* Slideshow animation */
+    animation: imageSlideshow 15s infinite; /* 15s for total cycle, adjust as needed */
+}
+
+/* Keyframes for the slideshow animation */
+@keyframes imageSlideshow {
+    0% {
+        background-image: url('/home.jpg');
+    }
+    33% {
+        background-image: url('/insurance-bg.jpg');
+    }
+    66% {
+        background-image: url('/about-us.jpg');
+    }
+    100% {
+        background-image: url('/home.jpg'); /* Loop back to the first image */
+    }
+}
+
+.bg-gradient {
+    background: linear-gradient(to right, #007bff, #00c3ff);
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(to right, #6c757d, #343a40);
+}
+
+.bg-gradient-tertiary {
+    background: linear-gradient(to right, #20c997, #17a2b8);
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(to right, #343a40, #212529);
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #f8f9fa;
+}
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.custom-footer {
+    background: linear-gradient(to right, #212529, #343a40);
+}
+
+.text-lavender {
+    color: #e6e6fa;
+}

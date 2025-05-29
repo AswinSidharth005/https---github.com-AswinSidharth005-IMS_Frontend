@@ -1,0 +1,83 @@
+.message {
+    background-image: url('/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: auto;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.alert-custom {
+    max-width: 500px;
+    /* Adjust the width as needed */
+    margin: auto;
+    /* Center the alert */
+    height: 30px;
+    /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    /* Center content vertically */
+}
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 3rem; /* Larger font size */
+    font-weight: 800; /* Extra bold text */
+    text-transform: uppercase; /* Make text uppercase */
+    text-align: center;
+    background: linear-gradient(to right, #007bff, #00c3ff); /* Gradient effect */
+    -webkit-background-clip: text; /* Clip gradient to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+}
+
+.animate-input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animate-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.animate-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animate-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
