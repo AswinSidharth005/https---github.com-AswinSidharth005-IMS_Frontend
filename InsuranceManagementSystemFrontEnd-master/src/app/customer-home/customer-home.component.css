@@ -1,0 +1,135 @@
+/* General Body & Typography */
+body {
+    background-color: #f0f2f5; /* A slightly deeper light grey for modern feel */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: #343a40; /* Darker text for better readability */
+  }
+  
+  h1, h5 {
+    letter-spacing: -0.02em; /* Slightly tighter letter spacing for titles */
+  }
+  
+  p.fs-5 {
+    max-width: 700px; /* Constrain width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Card Styling Enhancements */
+  .custom-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    border-radius: 0.75rem; /* Slightly less aggressive rounding */
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Subtle light border */
+  }
+  
+  .custom-card:hover {
+    transform: translateY(-6px); /* Slightly less lift for subtlety */
+    box-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.12) !important; /* Refined shadow on hover */
+    border-color: rgba(0, 0, 0, 0.15); /* Make border slightly visible on hover */
+  }
+  
+  /* Card Specific Border Colors */
+  .create-card { border-left: 6px solid #28a745; }
+  .update-card { border-left: 6px solid #17a2b8; }
+  .search-card { border-left: 6px solid #ffc107; }
+  .view-card   { border-left: 6px solid #007bff; }
+  .delete-card { border-left: 6px solid #dc3545; }
+  
+  /* Icons within cards */
+  .custom-card .bi {
+    transition: transform 0.25s ease-in-out, color 0.25s ease-in-out;
+  }
+  
+  .custom-card:hover .bi {
+    transform: scale(1.05); /* Subtle scale on hover */
+  }
+  
+  /* Card Button Styling */
+  .custom-card .btn {
+    border-radius: 0.5rem; /* Rounded button corners */
+    font-weight: 600; /* Bolder button text */
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Specific button colors for consistency */
+  .create-card .btn-success { background-color: #28a745; border-color: #28a745; }
+  .create-card .btn-success:hover { background-color: #218838; border-color: #1e7e34; transform: translateY(-1px); }
+  
+  .update-card .btn-info { background-color: #17a2b8; border-color: #17a2b8; }
+  .update-card .btn-info:hover { background-color: #138496; border-color: #117a8b; transform: translateY(-1px); }
+  
+  .search-card .btn-warning { background-color: #ffc107; border-color: #ffc107; color: #343a40; } /* Dark text for warning button */
+  .search-card .btn-warning:hover { background-color: #e0a800; border-color: #d39e00; transform: translateY(-1px); }
+  
+  .view-card .btn-primary { background-color: #007bff; border-color: #007bff; }
+  .view-card .btn-primary:hover { background-color: #0056b3; border-color: #004085; transform: translateY(-1px); }
+  
+  .delete-card .btn-danger { background-color: #dc3545; border-color: #dc3545; }
+  .delete-card .btn-danger:hover { background-color: #c82333; border-color: #bd2130; transform: translateY(-1px); }
+  
+  
+  /* Logout Button Specifics */
+  .btn-outline-danger {
+    border-width: 2px; /* Thicker border for outline buttons */
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2); /* Subtle shadow on hover */
+  }
+  
+  /* Table Enhancements */
+  .policy-table-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08); /* Lighter shadow for table card */
+  }
+  
+  .animated-table {
+    width: 100%; /* Ensure table takes full width */
+    margin-top: 1rem; /* Space above table */
+  }
+  
+  .animated-table thead {
+    background-color: #343a40; /* Darker header for contrast */
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  .animated-table thead th {
+    padding: 1rem 0.75rem; /* More padding for header cells */
+    border-bottom: 0; /* Remove bottom border from header cells */
+  }
+  
+  .animated-table tbody tr {
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    border-bottom: 1px solid #dee2e6; /* Consistent border between rows */
+  }
+  
+  .animated-table tbody tr:last-child {
+    border-bottom: none; /* No border for the last row */
+  }
+  
+  .animated-table tbody tr:hover {
+    background-color: #e9ecef; /* Lighter hover background */
+    transform: scale(1.005);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Very subtle shadow on row hover */
+  }
+  
+  /* Animations from Animate.css */
+  .animate__animated {
+    animation-duration: 0.7s; /* Slightly faster default duration */
+    animation-fill-mode: both; /* Element retains style after animation */
+  }
+  
+  /* Specific delays are applied directly in HTML */
+  /* .animate__delay-0-1s { animation-delay: 0.1s; } */
+  /* ... and so on */
+  
+  /* Info message when no policies */
+  .lead {
+      font-weight: 500;
+  }

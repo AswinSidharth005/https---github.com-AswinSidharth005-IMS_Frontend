@@ -16,15 +16,6 @@ export class LoginComponent {
 
   }
   token: string;
-  // validated(form:NgForm):any {
-  //   console.log("validate function calling.......");
-  //   // console.log(this.commonService.isLogedIn) ;
-  //   console.log(form.value)
-
-  //   this.logService.login(form.value).subscribe(response => {console.log(response)})
-  //   this.router.navigate(["/insurance"])
-  //   //console.log(this.commonService.validate(form));
-  // }
 
   validated(form: NgForm): any {
     console.log("validate function calling.......");
@@ -33,7 +24,17 @@ export class LoginComponent {
     this.logService.login(form.value).subscribe({
       next: (response) => {
         console.log("Login successful:", response);
-        this.router.navigate(["/insurance"]);
+        const role = localStorage.getItem('userRole'); // Retrieve the role from localStorage
+        console.log("Retrieved role from localStorage:", role); // Log the role
+
+        if (role && role.toLowerCase() === 'customer') {
+          this.router.navigate(["/customer-home"]); // Redirect to customer dashboard
+        } else if (role && role.toLowerCase() === 'agent') {
+          this.router.navigate(["/agent-dashboard"]); // Redirect to agent dashboard
+        } else {
+          alert("Unsupported role. Please contact support."); // Handle unsupported roles
+          this.router.navigate(["/login"]); // Redirect to login page
+        }
       },
       error: (err) => {
         if (err.status === 403) {
@@ -44,12 +45,5 @@ export class LoginComponent {
       }
     });
   }
-
-  // login() {
-  //   console.log(this.commonService.isLogedIn);
-
-  // }
-
-
 
 }

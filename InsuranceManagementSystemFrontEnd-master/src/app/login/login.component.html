@@ -213,22 +213,14 @@
 
                     <form #frm="ngForm" (ngSubmit)="validated(frm)">
                         <div class="mb-3">
-                            <label for="userName" class="form-label animate__animated animate__fadeInRight" style="animation-delay: 0.6s;">User Name:</label>
-                            <input type="text" ngModel name="username" class="form-control animate__animated animate__fadeInRight" style="animation-delay: 0.7s;"
-                                placeholder="Enter your user name">
+                            <label for="userName" class="form-label">User Name:</label>
+                            <input type="text" ngModel name="username" class="form-control" placeholder="Enter your user name">
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label animate__animated animate__fadeInRight" style="animation-delay: 0.8s;">Password:</label>
-                            <input type="password" ngModel class="form-control animate__animated animate__fadeInRight" style="animation-delay: 0.9s;"
-                                placeholder="Enter your password">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" ngModel name="password" class="form-control" placeholder="Enter your password">
                         </div>
-
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <button type="submit" class="btn btn-submit animate__animated animate__fadeInUp" style="animation-delay: 1.0s;">
-                                Submit
-                            </button>
-                            <a href="#" routerLink="/register" class="new-user-link animate__animated animate__fadeInUp" style="animation-delay: 1.1s;">NEW USER</a>
-                        </div>
+                        <button type="submit" class="btn btn-submit">Submit</button>
                     </form>
 
                 </div>

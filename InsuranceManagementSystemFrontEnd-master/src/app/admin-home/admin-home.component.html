@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin & Agent Dashboards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    </head>
+<body>
+    <div class="dashboard-container container-fluid py-4">
+
+        <section id="admin-dashboard" class="card shadow-lg mb-5 rounded-4 animate__animated animate__fadeInDown">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3 rounded-top-4">
+                <h1 class="card-title mb-0 display-5 fw-bold"><i class="bi bi-person-workspace me-3"></i>Admin Console</h1>
+                <button class="btn btn-outline-light btn-lg rounded-pill px-4" onclick="logoutAdmin()"><i class="bi bi-box-arrow-right me-2"></i>Logout</button>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-center text-secondary fs-5 mb-5">Manage policies, claims, and overall system health with administrative control.</p>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 animate__animated animate__zoomIn animate__delay-0-1s">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-file-earmark-plus-fill display-3 mb-3 text-success"></i>
+                                <h5 class="card-title fw-bold text-success mb-2">Add New Policy</h5>
+                                <p class="card-text text-muted mb-4">Create and introduce new insurance policies into the system.</p>
+                                <button class="btn btn-success btn-lg w-75 mx-auto mt-auto" data-bs-toggle="modal" data-bs-target="#addPolicyModal">
+                                    <i class="bi bi-plus-circle me-2"></i>Add Policy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 animate__animated animate__zoomIn animate__delay-0-2s">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-pencil-square display-3 mb-3 text-info"></i>
+                                <h5 class="card-title fw-bold text-info mb-2">Update Policy</h5>
+                                <p class="card-text text-muted mb-4">Modify details or terms of existing insurance policies.</p>
+                                <button class="btn btn-info btn-lg w-75 mx-auto mt-auto" data-bs-toggle="modal" data-bs-target="#updatePolicyModal">
+                                    <i class="bi bi-arrow-repeat me-2"></i>Update Policy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg border-0 rounded-4 p-4 animate__animated animate__fadeInUp animate__delay-0-3s">
+                    <h2 class="card-title text-primary fw-bold text-center mb-4"><i class="bi bi-receipt-cutoff me-2"></i>Pending Claims Review</h2>
+                    <p class="card-text text-center text-secondary mb-4">Expedite the review process for submitted insurance claims.</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped table-bordered align-middle rounded-3 overflow-hidden">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" class="text-white">Claim ID</th>
+                                    <th scope="col" class="text-white">Policy Holder</th>
+                                    <th scope="col" class="text-white">Policy Name</th>
+                                    <th scope="col" class="text-white">Claim Amount</th>
+                                    <th scope="col" class="text-white">Status</th>
+                                    <th scope="col" class="text-white">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="animate__animated animate__fadeIn animate__faster">
+                                    <td>#CLM12345</td>
+                                    <td>John Doe</td>
+                                    <td>Auto Premium</td>
+                                    <td>₹ 50,000</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm me-2" onclick="approveClaim('CLM12345')"><i class="bi bi-check-circle me-1"></i>Approve</button>
+                                        <button class="btn btn-danger btn-sm me-2" onclick="rejectClaim('CLM12345')"><i class="bi bi-x-circle me-1"></i>Reject</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewClaimDetails('CLM12345')" data-bs-toggle="modal" data-bs-target="#viewClaimModal"><i class="bi bi-eye me-1"></i>View</button>
+                                    </td>
+                                </tr>
+                                <tr class="animate__animated animate__fadeIn animate__faster animate__delay-0-1s">
+                                    <td>#CLM12346</td>
+                                    <td>Jane Smith</td>
+                                    <td>Health Shield</td>
+                                    <td>₹ 1,20,000</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm me-2" onclick="approveClaim('CLM12346')"><i class="bi bi-check-circle me-1"></i>Approve</button>
+                                        <button class="btn btn-danger btn-sm me-2" onclick="rejectClaim('CLM12346')"><i class="bi bi-x-circle me-1"></i>Reject</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewClaimDetails('CLM12346')" data-bs-toggle="modal" data-bs-target="#viewClaimModal"><i class="bi bi-eye me-1"></i>View</button>
+                                    </td>
+                                </tr>
+                                <tr class="animate__animated animate__fadeIn animate__faster animate__delay-0-2s">
+                                    <td>#CLM12347</td>
+                                    <td>Alice Brown</td>
+                                    <td>Life Secure</td>
+                                    <td>₹ 75,000</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm me-2" onclick="approveClaim('CLM12347')"><i class="bi bi-check-circle me-1"></i>Approve</button>
+                                        <button class="btn btn-danger btn-sm me-2" onclick="rejectClaim('CLM12347')"><i class="bi bi-x-circle me-1"></i>Reject</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewClaimDetails('CLM12347')" data-bs-toggle="modal" data-bs-target="#viewClaimModal"><i class="bi bi-eye me-1"></i>View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary btn-lg rounded-pill" onclick="viewAllClaims()"><i class="bi bi-table me-2"></i>View All Claims</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agent-dashboard" class="card shadow-lg rounded-4 animate__animated animate__fadeInUp">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center py-3 rounded-top-4">
+                <h1 class="card-title mb-0 display-5 fw-bold"><i class="bi bi-person-bounding-box me-3"></i>Agent Portal</h1>
+                <button class="btn btn-outline-light btn-lg rounded-pill px-4" onclick="logoutAgent()"><i class="bi bi-box-arrow-right me-2"></i>Logout</button>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-center text-secondary fs-5 mb-5">Access customer policies, generate reports, and assist clients efficiently.</p>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 animate__animated animate__zoomIn animate__delay-0-1s">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-journal-check display-3 mb-3 text-primary"></i>
+                                <h5 class="card-title fw-bold text-primary mb-2">View Customer Policies</h5>
+                                <p class="card-text text-muted mb-4">Access active and historical policies for your clients.</p>
+                                <button class="btn btn-primary btn-lg w-75 mx-auto mt-auto" onclick="viewCustomerPolicies()"><i class="bi bi-eye-fill me-2"></i>View Policies</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 animate__animated animate__zoomIn animate__delay-0-2s">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-bar-chart-fill display-3 mb-3 text-warning"></i>
+                                <h5 class="card-title fw-bold text-warning mb-2">Generate Reports</h5>
+                                <p class="card-text text-muted mb-4">Create detailed reports on customer policies or performance.</p>
+                                <button class="btn btn-warning btn-lg w-75 mx-auto mt-auto" onclick="generateReports()"><i class="bi bi-graph-up me-2"></i>Generate Reports</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="modal fade" id="addPolicyModal" tabindex="-1" aria-labelledby="addPolicyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow-lg">
+          <div class="modal-header bg-success text-white rounded-top-4">
+            <h5 class="modal-title fw-bold" id="addPolicyModalLabel"><i class="bi bi-file-earmark-plus me-2"></i>Add New Policy</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="addPolicyForm">
+              <div class="mb-3">
+                <label for="policyName" class="form-label fw-semibold">Policy Name</label>
+                <input type="text" class="form-control" id="policyName" required>
+              </div>
+              <div class="mb-3">
+                <label for="policyType" class="form-label fw-semibold">Policy Type</label>
+                <input type="text" class="form-control" id="policyType" required>
+              </div>
+              <div class="mb-3">
+                <label for="coverageAmount" class="form-label fw-semibold">Coverage Amount (₹)</label>
+                <input type="number" class="form-control" id="coverageAmount" required>
+              </div>
+              <div class="mb-3">
+                <label for="policyDetails" class="form-label fw-semibold">Details</label>
+                <textarea class="form-control" id="policyDetails" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success w-100 mt-3"><i class="bi bi-save me-2"></i>Save Policy</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="updatePolicyModal" tabindex="-1" aria-labelledby="updatePolicyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content rounded-4 shadow-lg">
+            <div class="modal-header bg-info text-white rounded-top-4">
+              <h5 class="modal-title fw-bold" id="updatePolicyModalLabel"><i class="bi bi-pencil-square me-2"></i>Update Policy</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <form id="updatePolicyForm">
+                <div class="mb-3">
+                  <label for="updatePolicyId" class="form-label fw-semibold">Policy ID</label>
+                  <input type="text" class="form-control" id="updatePolicyId" placeholder="Enter Policy ID to update" required>
+                </div>
+                <div class="mb-3">
+                  <label for="updatePolicyName" class="form-label fw-semibold">Policy Name</label>
+                  <input type="text" class="form-control" id="updatePolicyName">
+                </div>
+                <div class="mb-3">
+                  <label for="updatePolicyType" class="form-label fw-semibold">Policy Type</label>
+                  <input type="text" class="form-control" id="updatePolicyType">
+                </div>
+                <div class="mb-3">
+                  <label for="updateCoverageAmount" class="form-label fw-semibold">Coverage Amount (₹)</label>
+                  <input type="number" class="form-control" id="updateCoverageAmount">
+                </div>
+                <div class="mb-3">
+                  <label for="updatePolicyDetails" class="form-label fw-semibold">Details</label>
+                  <textarea class="form-control" id="updatePolicyDetails" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info w-100 mt-3"><i class="bi bi-arrow-repeat me-2"></i>Apply Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewClaimModal" tabindex="-1" aria-labelledby="viewClaimModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content rounded-4 shadow-lg">
+            <div class="modal-header bg-secondary text-white rounded-top-4">
+              <h5 class="modal-title fw-bold" id="viewClaimModalLabel"><i class="bi bi-receipt me-2"></i>Claim Details</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <p><strong>Claim ID:</strong> <span id="modalClaimId"></span></p>
+              <p><strong>Policy Holder:</strong> <span id="modalPolicyHolder"></span></p>
+              <p><strong>Policy Name:</strong> <span id="modalPolicyName"></span></p>
+              <p><strong>Claim Amount:</strong> <span id="modalClaimAmount"></span></p>
+              <p><strong>Status:</strong> <span id="modalClaimStatus"></span></p>
+              <hr>
+              <h6>Additional Details (Example)</h6>
+              <p><small>This section would contain more specific claim information, e.g., date filed, reason, documents attached, etc.</small></p>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-success me-2" onclick="approveClaimFromModal()"><i class="bi bi-check-circle me-2"></i>Approve</button>
+                <button type="button" class="btn btn-danger" onclick="rejectClaimFromModal()"><i class="bi bi-x-circle me-2"></i>Reject</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Placeholder functions for interactivity
+        function logoutAdmin() {
+            alert('Admin Logout functionality goes here!');
+            // Implement actual logout logic (e.g., redirect to login page)
+        }
+
+        function logoutAgent() {
+            alert('Agent Logout functionality goes here!');
+            // Implement actual logout logic (e.g., redirect to login page)
+        }
+
+        // Admin Policy Management
+        document.getElementById('addPolicyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const policyName = document.getElementById('policyName').value;
+            const policyType = document.getElementById('policyType').value;
+            const coverageAmount = document.getElementById('coverageAmount').value;
+            const policyDetails = document.getElementById('policyDetails').value;
+            alert(`Adding Policy:\nName: ${policyName}\nType: ${policyType}\nAmount: ${coverageAmount}\nDetails: ${policyDetails}`);
+            // Implement API call to add policy
+            const addPolicyModal = bootstrap.Modal.getInstance(document.getElementById('addPolicyModal'));
+            addPolicyModal.hide();
+            this.reset();
+        });
+
+        document.getElementById('updatePolicyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const policyId = document.getElementById('updatePolicyId').value;
+            const policyName = document.getElementById('updatePolicyName').value;
+            const policyType = document.getElementById('updatePolicyType').value;
+            const coverageAmount = document.getElementById('updateCoverageAmount').value;
+            const policyDetails = document.getElementById('updatePolicyDetails').value;
+            alert(`Updating Policy ID: ${policyId}\nName: ${policyName}\nType: ${policyType}\nAmount: ${coverageAmount}\nDetails: ${policyDetails}`);
+            // Implement API call to update policy
+            const updatePolicyModal = bootstrap.Modal.getInstance(document.getElementById('updatePolicyModal'));
+            updatePolicyModal.hide();
+            this.reset();
+        });
+
+        // Admin Claims Review
+        function approveClaim(claimId) {
+            alert(`Approving Claim ID: ${claimId}`);
+            // Implement API call to approve claim
+        }
+
+        function rejectClaim(claimId) {
+            alert(`Rejecting Claim ID: ${claimId}`);
+            // Implement API call to reject claim
+        }
+
+        function viewClaimDetails(claimId) {
+            // In a real application, you'd fetch claim data by ID from an API
+            const claimsData = {
+                'CLM12345': { holder: 'John Doe', policy: 'Auto Premium', amount: '₹ 50,000', status: 'Pending', details: 'Accident report attached.' },
+                'CLM12346': { holder: 'Jane Smith', policy: 'Health Shield', amount: '₹ 1,20,000', status: 'Pending', details: 'Hospital bills submitted.' },
+                'CLM12347': { holder: 'Alice Brown', policy: 'Life Secure', amount: '₹ 75,000', status: 'Pending', details: 'Beneficiary details confirmed.' }
+            };
+            const claim = claimsData[claimId];
+
+            if (claim) {
+                document.getElementById('modalClaimId').textContent = claimId;
+                document.getElementById('modalPolicyHolder').textContent = claim.holder;
+                document.getElementById('modalPolicyName').textContent = claim.policy;
+                document.getElementById('modalClaimAmount').textContent = claim.amount;
+                document.getElementById('modalClaimStatus').textContent = claim.status;
+                // You can add more details to the modal-body dynamically
+            }
+        }
+
+        function approveClaimFromModal() {
+            const claimId = document.getElementById('modalClaimId').textContent;
+            approveClaim(claimId);
+            const viewClaimModal = bootstrap.Modal.getInstance(document.getElementById('viewClaimModal'));
+            viewClaimModal.hide();
+        }
+
+        function rejectClaimFromModal() {
+            const claimId = document.getElementById('modalClaimId').textContent;
+            rejectClaim(claimId);
+            const viewClaimModal = bootstrap.Modal.getInstance(document.getElementById('viewClaimModal'));
+            viewClaimModal.hide();
+        }
+
+        function viewAllClaims() {
+            alert('Navigating to All Claims page/view functionality.');
+            // Implement navigation or data display
+        }
+
+        // Agent Actions
+        function viewCustomerPolicies() {
+            alert('Navigating to Customer Policies page/view functionality.');
+            // Implement navigation or data display
+        }
+
+        function generateReports() {
+            alert('Navigating to Report Generation page/functionality.');
+            // Implement navigation or data display
+        }
+    </script>
+</body>
+</html>

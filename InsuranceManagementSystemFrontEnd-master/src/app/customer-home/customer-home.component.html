@@ -1,1 +1,117 @@
-<p>customer-home works!</p>
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1 class="text-primary display-4 fw-bold animate__animated animate__fadeInDown">
+      <i class="bi bi-speedometer2 me-3"></i>Customer Operations Dashboard
+    </h1>
+    <button class="btn btn-outline-danger btn-lg rounded-pill px-4 animate__animated animate__fadeInRight" (click)="logout()">
+      <i class="bi bi-box-arrow-right me-2"></i>Logout
+    </button>
+  </div>
+  <p class="text-center text-secondary fs-5 mb-5 animate__animated animate__fadeIn">
+    Efficiently manage customer profiles and oversee policy information.
+  </p>
+
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0 rounded-4 custom-card create-card animate__animated animate__zoomIn">
+        <div class="card-body text-center d-flex flex-column justify-content-center p-4">
+          <i class="bi bi-person-plus-fill display-3 mb-3 text-success"></i>
+          <h5 class="card-title fw-bold text-success mb-2">Create Customer</h5>
+          <p class="card-text text-muted mb-4">Add a new customer profile to the system.</p>
+          <button class="btn btn-success btn-lg w-75 mx-auto mt-auto" (click)="createCustomer()">
+            <i class="bi bi-plus-circle me-2"></i>Create
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0 rounded-4 custom-card update-card animate__animated animate__zoomIn animate__delay-0-1s">
+        <div class="card-body text-center d-flex flex-column justify-content-center p-4">
+          <i class="bi bi-person-gear-fill display-3 mb-3 text-info"></i>
+          <h5 class="card-title fw-bold text-info mb-2">Update Customer</h5>
+          <p class="card-text text-muted mb-4">Modify details for an existing customer.</p>
+          <button class="btn btn-info btn-lg w-75 mx-auto mt-auto" (click)="updateCustomer()">
+            <i class="bi bi-pencil-square me-2"></i>Update
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0 rounded-4 custom-card search-card animate__animated animate__zoomIn animate__delay-0-2s">
+        <div class="card-body text-center d-flex flex-column justify-content-center p-4">
+          <i class="bi bi-search display-3 mb-3 text-warning"></i>
+          <h5 class="card-title fw-bold text-warning mb-2">Search Customer</h5>
+          <p class="card-text text-muted mb-4">Quickly find customer information by ID.</p>
+          <button class="btn btn-warning btn-lg w-75 mx-auto mt-auto" (click)="searchCustomer()">
+            <i class="bi bi-search me-2"></i>Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5">
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-4 custom-card view-card animate__animated animate__zoomIn animate__delay-0-3s">
+        <div class="card-body text-center d-flex flex-column justify-content-center p-4">
+          <i class="bi bi-people-fill display-3 mb-3 text-primary"></i>
+          <h5 class="card-title fw-bold text-primary mb-2">View All Customers</h5>
+          <p class="card-text text-muted mb-4">Retrieve and display a comprehensive list of all customers.</p>
+          <button class="btn btn-primary btn-lg w-75 mx-auto mt-auto" (click)="getAllCustomers()">
+            <i class="bi bi-eye-fill me-2"></i>View All
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-4 custom-card delete-card animate__animated animate__zoomIn animate__delay-0-4s">
+        <div class="card-body text-center d-flex flex-column justify-content-center p-4">
+          <i class="bi bi-person-x-fill display-3 mb-3 text-danger"></i>
+          <h5 class="card-title fw-bold text-danger mb-2">Delete Customer</h5>
+          <p class="card-text text-muted mb-4">Permanently remove a customer profile from the system.</p>
+          <button class="btn btn-danger btn-lg w-75 mx-auto mt-auto" (click)="deleteCustomer()">
+            <i class="bi bi-trash-fill me-2"></i>Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 animate__animated animate__fadeInUp" *ngIf="policies && policies.length > 0">
+    <div class="col-md-12">
+      <div class="card shadow-lg border-0 rounded-4 p-4 policy-table-card">
+        <h5 class="card-title text-success fw-bold text-center mb-4">
+          <i class="bi bi-journal-richtext me-2"></i>Your Active Policies
+        </h5>
+        <p class="card-text text-center text-secondary mb-4">
+          Below is a summary of all insurance policies currently available.
+        </p>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered align-middle rounded-3 overflow-hidden animate__animated animate__fadeIn animated-table">
+            <thead class="table-dark"> <tr>
+                <th scope="col" class="text-white">Policy ID</th>
+                <th scope="col" class="text-white">Customer ID</th>
+                <th scope="col" class="text-white">Policy Name</th>
+                <th scope="col" class="text-white">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let policy of policies" class="animate__animated animate__fadeIn animate__faster">
+                <td>{{ policy.policyId }}</td>
+                <td>{{ policy.customerId }}</td>
+                <td>{{ policy.policyName }}</td>
+                <td>{{ policy.details }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 animate__animated animate__fadeIn" *ngIf="!policies || policies.length === 0">
+    <div class="col-md-12 text-center text-muted">
+      <p class="lead"><i class="bi bi-info-circle me-2"></i>No policies found. Please check back later or contact support for assistance.</p>
+    </div>
+  </div>
+</div>
